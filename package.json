@@ -16,6 +16,9 @@
     "start-dev": "webpack-dev-server --progress --colors"
   },
   "license": "MIT",
+  "dependencies": {
+    "webpack-dev-server": ">=3.1.11"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
