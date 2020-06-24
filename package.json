@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "webpack-dev-server": ">=3.1.11"
+    "webpack-dev-server": "^3.1.11"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -30,6 +30,6 @@
     "react-tv": "^0.3.1",
     "react-tv-cli": "^0.3.1",
     "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack-dev-server": ">=3.1.11"
   }
 }
