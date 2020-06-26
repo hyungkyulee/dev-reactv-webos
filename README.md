@@ -28,41 +28,73 @@ $ yarn global add react-tv-cli@0.3.0
    - restart system
   
 3) WebOS TV setup
-  - Go to Contents Strore
-  - Search and Install 'Developer Mode' App
-  - Login with the developer account created
-  - Enable 'Dev Mode Status', followed by restarting TV
-  - launch the 'Developer Mode' app once again and enable 'Key Server' option
-  - Registry your TV on react-tv
-  * please check the TV and developer PC(cli installed system) should be under the same local network.
-  * when using 'Dev Mode', password is not required.
-  ```
-  $ react-tv-cli setup-webos
-  name      deviceinfo                connection  profile
-  --------  ------------------------  ----------  -------
-  emulator  developer@127.0.0.1:6622  ssh         tv     
+   - Go to Contents Strore
+   - Search and Install 'Developer Mode' App
+   - Login with the developer account created
+   - Enable 'Dev Mode Status', followed by restarting TV
+   - launch the 'Developer Mode' app once again and enable 'Key Server' option
+   - Registry your TV on react-tv
+    * please check the TV and developer PC(cli installed system) should be under the same local network.
+    * when using 'Dev Mode', password is not required.  
+   ```
+   $ react-tv-cli setup-webos
+   name      deviceinfo                connection  profile
+   --------  ------------------------  ----------  -------
+   emulator  developer@127.0.0.1:6622  ssh         tv     
 
-  ** You can modify the device info in the above list, or add new device.
-  ? Select: add
-  ? Enter Device Name: lg-uk64
-  ? Enter Device IP address: 192.168.1.90
-  ? Enter Device Port: 22
-  ? Enter ssh user: root
-  ? Enter description: new device
-  ? Select authentification: password
-  ? Enter password: 
-  ? Save ? Yes
-  name      deviceinfo                connection  profile
-  --------  ------------------------  ----------  -------
-  lg-uk64   root@192.168.1.90:22      ssh         tv     
-  emulator  developer@127.0.0.1:6622  ssh         tv  
-  ```
+   ** You can modify the device info in the above list, or add new device.
+   ? Select: add
+   ? Enter Device Name: lg-uk64
+   ? Enter Device IP address: 192.168.1.90
+   ? Enter Device Port: 22
+   ? Enter ssh user: root
+   ? Enter description: new device
+   ? Select authentification: password
+   ? Enter password: 
+   ? Save ? Yes
+   name      deviceinfo                connection  profile
+   --------  ------------------------  ----------  -------
+   lg-uk64   root@192.168.1.90:22      ssh         tv     
+   emulator  developer@127.0.0.1:6622  ssh         tv  
+   ```
+
+5) ares cli 
+react-tv-cli might be not working(compatible) with webos. In this case, ares-cli should be installed and can directly set the devices.
+The path of webOS SDK CLI will be ```/opt/webOS_TV_SDK/CLI```
+
+```
+(hyungkyu) ~ $ ares-setup-device
+name      deviceinfo                connection  profile
+--------  ------------------------  ----------  -------
+emulator  developer@127.0.0.1:6622  ssh         tv     
+
+** You can modify the device info in the above list, or add new device.
+? Select add
+? Enter Device Name: mytv
+? Enter Device IP address: 192.168.1.90
+? Enter Device Port: 22
+? Enter ssh user: root
+? Enter description: mytv
+? Select authentication ssh key
+? Enter ssh private key file name: webos_emul
+? Enter key's passphrase: ****** (please put the passphrase on the TV screen of 'developer mode' app)
+? Save ? Yes
+name      deviceinfo                connection  profile
+--------  ------------------------  ----------  -------
+emulator  developer@127.0.0.1:6622  ssh         tv     
+mytv      root@192.168.1.90:22      ssh         tv     
+
+(hyungkyu) ~ $ ares-novacom --device mytv --getkey
+SSH Private Key: /Users/albert/.ssh/mytv_webos
+input passphrase [default: webos]: ******
+```
   
 4) Component Manager
-  - Move to 'in webOS SDK installed folder : ```/opt/webOS_TV_SDK/ComponentManager```
-  - Run the component manager executable file (internet connection is required) : ``` sudo ./componentmanager_mac64 ```
-  - Add/Update/Remove components
-  * Emulator 3.0.0 is required for react-tv
+   - Move to 'in webOS SDK installed folder : ```/opt/webOS_TV_SDK/ComponentManager```
+   - Run the component manager executable file (internet connection is required) : ``` sudo ./componentmanager_mac64 ```
+   - Add/Update/Remove components
+    * Emulator 3.0.0 is required for react-tv
+  
   
 ## React TV App
 
@@ -84,5 +116,5 @@ yarn start
 4) launch the app on the device
 (e.g. react-tv-cli run-webos <device>)
 ```
-$ react-tv-cli run-webos lg-uk64
+$ react-tv-cli run-webos mytv
 ```
